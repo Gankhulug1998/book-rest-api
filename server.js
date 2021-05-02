@@ -32,7 +32,11 @@ var accessLogStream = rfs.createStream("access.log", {
 	path: path.join(__dirname, "log"),
 });
 
-var whitelist = ["*"];
+var whitelist = [
+	"http://localhost:3000",
+	"https://christian-book-react.vercel.app/",
+	"http://christian-book-react.vercel.app/",
+];
 
 var corsOptions = {
 	origin: function (origin, callback) {
