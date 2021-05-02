@@ -1797,3 +1797,7 @@
 ::1 - - [01/May/2021:09:39:45 +0000] "POST /api/v1/users/login HTTP/1.1" 200 444 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
 ::1 - - [01/May/2021:09:39:46 +0000] "GET /api/v1/books?limit=52 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
 ::1 - - [01/May/2021:09:39:49 +0000] "GET /api/v1/users/logout HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+::1 - - [01/May/2021:14:09:55 +0000] "GET /api/v1/books HTTP/1.1" 200 11174 "-" "PostmanRuntime/7.28.0"
+::1 - - [01/May/2021:14:10:26 +0000] "GET /api/v1/books HTTP/1.1" 200 11174 "-" "PostmanRuntime/7.28.0"
+::1 - - [01/May/2021:14:12:26 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+::1 - - [01/May/2021:14:31:00 +0000] "GET /api/v1/books HTTP/1.1" 200 11174 "-" "PostmanRuntime/7.28.0"
