@@ -35,7 +35,7 @@ var accessLogStream = rfs.createStream("access.log", {
 var whitelist = [
 	"http://localhost:3000",
 	"https://christian-book-react.vercel.app/",
-	"http://christian-book-react.vercel.app/",
+	"https://christian-book-react.vercel.app",
 ];
 
 var corsOptions = {
