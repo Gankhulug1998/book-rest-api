@@ -32,32 +32,32 @@ var accessLogStream = rfs.createStream("access.log", {
 	path: path.join(__dirname, "log"),
 });
 
-var whitelist = [
-	"http://localhost:3000",
-	"https://christian-book-react.vercel.app",
-];
+// var whitelist = [
+// 	"http://localhost:3000",
+// 	"https://christian-book-react.vercel.app",
+// ];
 
-var corsOptions = {
-	origin: function (origin, callback) {
-		console.log("🚀 ~ file: server.js ~ line 37 ~ origin", origin);
+// var corsOptions = {
+// 	origin: function (origin, callback) {
+// 		console.log("🚀 ~ file: server.js ~ line 37 ~ origin", origin);
 
-		if (origin === undefined || whitelist.indexOf(origin) !== -1) {
-			callback(null, true);
-		} else {
-			callback(new Error("Not allowed by CORS"));
-		}
-	},
-	allowedHeaders: "Authorization, Set-Cookie, Content-Type",
-	methods: "GET, POST , PUT, DELETE",
-	credentials: true,
-};
+// 		if (origin === undefined || whitelist.indexOf(origin) !== -1) {
+// 			callback(null, true);
+// 		} else {
+// 			callback(new Error("Not allowed by CORS"));
+// 		}
+// 	},
+// 	allowedHeaders: "Authorization, Set-Cookie, Content-Type",
+// 	methods: "GET, POST , PUT, DELETE",
+// 	credentials: true,
+// };
 
 // Body parser
 // app.use(serverless);
 app.use(cookieParser());
 app.use(logger);
 app.use(express.json());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(fileupload());
 // app.use(injectDb(db));
 app.use(morgan("combined", { stream: accessLogStream }));
