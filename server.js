@@ -1,4 +1,3 @@
-// const serverless = require("serverless-http");
 const express = require("express");
 const dotenv = require("dotenv");
 var path = require("path");
@@ -13,14 +12,12 @@ const fileupload = require("express-fileupload");
 const categoriesRoutes = require("./routes/categories");
 const booksRoutes = require("./routes/books");
 const usersRoutes = require("./routes/users");
-// const commentsRoutes = require("./routes/comments");
-// const injectDb = require("./middleware/injectDb");
 var cors = require("cors");
 var cookieParser = require("cookie-parser");
 // Аппын тохиргоог process.env рүү ачаалах
-dotenv.config({ path: "./config/config.env" });
-
-// const db = require("./config/db-mysql");
+dotenv.config({
+	path: "./config/config.env"
+});
 
 const app = express();
 
@@ -41,7 +38,6 @@ var whitelist = [
 var corsOptions = {
 	origin: function (origin, callback) {
 		console.log("🚀 ~ file: server.js ~ line 37 ~ origin", origin);
-
 		if (origin === undefined || whitelist.indexOf(origin) !== -1) {
 			callback(null, true);
 		} else {
@@ -54,31 +50,18 @@ var corsOptions = {
 };
 
 // Body parser
-// app.use(serverless);
 app.use(cookieParser());
 app.use(logger);
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(fileupload());
-// app.use(injectDb(db));
-app.use(morgan("combined", { stream: accessLogStream }));
+app.use(morgan("combined", {
+	stream: accessLogStream
+}));
 app.use("/api/v1/categories", categoriesRoutes);
 app.use("/api/v1/books", booksRoutes);
 app.use("/api/v1/users", usersRoutes);
-// app.use("/api/v1/comments", commentsRoutes);
 app.use(errorHandler);
-
-// db.user.belongsToMany(db.book, { through: "comment" });
-// db.book.belongsToMany(db.user, { through: "comment" });
-// db.category.hasMany(db.book);
-// db.book.belongsTo(db.category);
-
-// db.sequelize
-// 	.sync()
-// 	.then((result) => {
-// 		console.log("sync hiigdlee...");
-// 	})
-// 	.catch((err) => console.log(err));
 
 const server = app.listen(
 	process.env.PORT,

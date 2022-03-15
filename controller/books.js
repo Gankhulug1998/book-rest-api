@@ -51,10 +51,12 @@ exports.getCategoryBooks = asyncHandler(async (req, res, next) => {
 	const pagination = await paginate(page, limit, Book);
 
 	//req.query, select
-	const books = await Book.find(
-		{ ...req.query, category: req.params.categoryId },
-		select,
-	)
+	const books = await Book.find({
+				...req.query,
+				category: req.params.categoryId
+			},
+			select,
+		)
 		.sort(sort)
 		.skip(pagination.start - 1)
 		.limit(limit);
@@ -193,7 +195,9 @@ exports.uploadBookPhoto = asyncHandler(async (req, res, next) => {
 });
 
 exports.searchBook = asyncHandler(async (req, res, next) => {
-	const book = await Book.find({ name: new RegExp(req.body.search_book, "i") });
+	const book = await Book.find({
+		name: new RegExp(req.body.search_book, "i")
+	});
 	if (!book) {
 		throw new MyError(req.body.name + " ID-тэй ном байхгүй байна.", 404);
 	}
