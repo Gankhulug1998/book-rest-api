@@ -23,8 +23,8 @@ dotenv.config({
 });
 
 var options = {
-	key: fs.readFileSync('selfsigned.crt'),
-	cert: fs.readFileSync('selfsigned.key'),
+	key: fs.readFileSync('./key.pem', 'utf8'),
+	cert: fs.readFileSync('./server.crt', 'utf8')
 };
 
 const app = express();
