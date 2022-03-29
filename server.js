@@ -69,7 +69,7 @@ app.use("/api/v1/categories", categoriesRoutes);
 app.use("/api/v1/books", booksRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use(errorHandler);
-http.createServer(app).listen(8080);
+http.createServer(app).listen(8000);
 https.createServer(options, app).listen(3030);
 const server = app.listen(
 	process.env.PORT,
