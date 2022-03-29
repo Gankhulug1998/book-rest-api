@@ -15,7 +15,7 @@ const fileupload = require("express-fileupload");
 const categoriesRoutes = require("./routes/categories");
 const booksRoutes = require("./routes/books");
 const usersRoutes = require("./routes/users");
-// var cors = require("cors");
+var cors = require("cors");
 var cookieParser = require("cookie-parser");
 // Аппын тохиргоог process.env рүү ачаалах
 dotenv.config({
@@ -66,7 +66,7 @@ var accessLogStream = rfs.createStream("access.log", {
 app.use(cookieParser());
 app.use(logger);
 app.use(express.json());
-// app.use(cors(corsOptions));
+app.use(cors());
 app.use(fileupload());
 app.use(morgan("combined", {
 	stream: accessLogStream
