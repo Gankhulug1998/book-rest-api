@@ -8,8 +8,6 @@ const errorHandler = require("./middleware/error");
 var morgan = require("morgan");
 const logger = require("./middleware/logger");
 const fileupload = require("express-fileupload");
-const https = require('https');
-const fs = require('fs');
 // Router оруулж ирэх
 const categoriesRoutes = require("./routes/categories");
 const booksRoutes = require("./routes/books");
@@ -20,13 +18,6 @@ var cookieParser = require("cookie-parser");
 dotenv.config({
 	path: "./config/config.env"
 });
-
-var key = fs.readFileSync('./selfsigned.key');
-var cert = fs.readFileSync('./selfsigned.crt');
-var options = {
-	key: key,
-	cert: cert
-};
 
 const app = express();
 
@@ -39,7 +30,7 @@ var accessLogStream = rfs.createStream("access.log", {
 });
 
 var whitelist = [
-	"http://localhost",
+	"http://localhost:3000",
 	"https://christian-book-react.vercel.app/",
 	"https://christian-book-react.vercel.app",
 ];
@@ -72,19 +63,10 @@ app.use("/api/v1/books", booksRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use(errorHandler);
 
-var server = https.createServer(options, app);
-
-server.listen(port, () => {
-	console.log("server starting on port : " + port)
-});
-var server = https.createServer(options, app);
-server.listen(process.env.PORT, () => {
-	console.log("server starting on port : " + process.env.PORT)
-});
-// const server = app.listen(
-// 	process.env.PORT,
-// 	console.log(`Express сэрвэр ${process.env.PORT} порт дээр аслаа... `.rainbow),
-// );
+const server = app.listen(
+	process.env.PORT,
+	console.log(`Express сэрвэр ${process.env.PORT} порт дээр аслаа... `.rainbow),
+);
 
 process.on("unhandledRejection", (err, promise) => {
 	console.log(`Алдаа гарлаа : ${err.message}`.underline.red.bold);
