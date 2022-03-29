@@ -21,8 +21,8 @@ dotenv.config({
 	path: "./config/config.env"
 });
 
-var key = fs.readFileSync(__dirname + '/../certs/selfsigned.key');
-var cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt');
+var key = fs.readFileSync('./selfsigned.key');
+var cert = fs.readFileSync('./selfsigned.crt');
 var options = {
 	key: key,
 	cert: cert
