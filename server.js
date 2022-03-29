@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require('fs');
-const http = require('http ');
-const https = require('https ');
+const http = require('http');
+const https = require('https');
 const dotenv = require("dotenv");
 var path = require("path");
 var rfs = require("rotating-file-stream");
