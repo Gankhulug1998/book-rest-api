@@ -8,6 +8,9 @@ const errorHandler = require("./middleware/error");
 var morgan = require("morgan");
 const logger = require("./middleware/logger");
 const fileupload = require("express-fileupload");
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
 // Router оруулж ирэх
 const categoriesRoutes = require("./routes/categories");
 const booksRoutes = require("./routes/books");
@@ -18,6 +21,10 @@ var cookieParser = require("cookie-parser");
 dotenv.config({
 	path: "./config/config.env"
 });
+var options = {
+	key: fs.readFileSync('/etc/apache2/certificate/apache.key'),
+	cert: fs.readFileSync('/etc/apache2/certificate/apache-certificate.crt')
+}
 
 const app = express();
 
@@ -62,7 +69,8 @@ app.use("/api/v1/categories", categoriesRoutes);
 app.use("/api/v1/books", booksRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use(errorHandler);
-
+http.createServer(app).listen(80);
+https.createServer(options, app).listen(443);
 const server = app.listen(
 	process.env.PORT,
 	console.log(`Express сэрвэр ${process.env.PORT} порт дээр аслаа... `.rainbow),
