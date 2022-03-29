@@ -1,4 +1,7 @@
 const express = require("express");
+const fs = require('fs');
+const http = require('http ');
+const https = require('https ');
 const dotenv = require("dotenv");
 var path = require("path");
 var rfs = require("rotating-file-stream");
@@ -19,7 +22,14 @@ dotenv.config({
 	path: "./config/config.env"
 });
 
+var options = {
+	key: fs.readFileSync('selfsigned.crt'),
+	cert: fs.readFileSync('selfsigned.key'),
+};
+
 const app = express();
+
+
 
 connectDB();
 
@@ -63,10 +73,10 @@ app.use("/api/v1/books", booksRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use(errorHandler);
 
-const server = app.listen(
-	process.env.PORT,
-	console.log(`Express сэрвэр ${process.env.PORT} порт дээр аслаа... `.rainbow),
-);
+var server = https.createServer(options, app).listen(process.env.PORT, function () {
+	console.log("Express server listening on port " + process.env.PORT);
+});
+
 
 process.on("unhandledRejection", (err, promise) => {
 	console.log(`Алдаа гарлаа : ${err.message}`.underline.red.bold);
