@@ -66,7 +66,7 @@ var corsOptions = {
 app.use(cookieParser());
 app.use(logger);
 app.use(express.json());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(fileupload());
 app.use(morgan("combined", {
 	stream: accessLogStream
