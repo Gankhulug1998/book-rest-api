@@ -15,7 +15,7 @@ const fileupload = require("express-fileupload");
 const categoriesRoutes = require("./routes/categories");
 const booksRoutes = require("./routes/books");
 const usersRoutes = require("./routes/users");
-var cors = require("cors");
+// var cors = require("cors");
 var cookieParser = require("cookie-parser");
 // Аппын тохиргоог process.env рүү ачаалах
 dotenv.config({
@@ -39,28 +39,28 @@ var accessLogStream = rfs.createStream("access.log", {
 	path: path.join(__dirname, "log"),
 });
 
-var whitelist = [
-	"http://localhost",
-	"https://localhost/",
-	"https://christian-book-react.vercel.app/",
-	"https://christian-book-react.vercel.app",
-	"http://188.166.19.36/",
-	"https://188.166.19.36/",
-];
+// var whitelist = [
+// 	"http://localhost",
+// 	"https://localhost/",
+// 	"https://christian-book-react.vercel.app/",
+// 	"https://christian-book-react.vercel.app",
+// 	"http://188.166.19.36/",
+// 	"https://188.166.19.36/",
+// ];
 
-var corsOptions = {
-	origin: function (origin, callback) {
-		console.log("🚀 ~ file: server.js ~ line 37 ~ origin", origin);
-		if (origin === undefined || whitelist.indexOf(origin) !== -1) {
-			callback(null, true);
-		} else {
-			callback(new Error("Not allowed by CORS"));
-		}
-	},
-	allowedHeaders: "Authorization, Set-Cookie, Content-Type",
-	methods: "GET, POST , PUT, DELETE",
-	credentials: true,
-};
+// var corsOptions = {
+// 	origin: function (origin, callback) {
+// 		console.log("🚀 ~ file: server.js ~ line 37 ~ origin", origin);
+// 		if (origin === undefined || whitelist.indexOf(origin) !== -1) {
+// 			callback(null, true);
+// 		} else {
+// 			callback(new Error("Not allowed by CORS"));
+// 		}
+// 	},
+// 	allowedHeaders: "Authorization, Set-Cookie, Content-Type",
+// 	methods: "GET, POST , PUT, DELETE",
+// 	credentials: true,
+// };
 
 // Body parser
 app.use(cookieParser());
