@@ -40,7 +40,8 @@ var accessLogStream = rfs.createStream("access.log", {
 });
 
 var whitelist = [
-	"https://localhost",
+	"http://localhost",
+	"https://localhost/",
 	"https://christian-book-react.vercel.app/",
 	"https://christian-book-react.vercel.app",
 ];
