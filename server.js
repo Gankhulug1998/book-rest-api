@@ -1,6 +1,5 @@
 const express = require("express");
 const fs = require('fs');
-const http = require('http');
 const https = require('https');
 const dotenv = require("dotenv");
 var path = require("path");
@@ -23,7 +22,7 @@ dotenv.config({
 });
 
 var options = {
-	key: fs.readFileSync('./key.pem', 'utf8'),
+	key: fs.readFileSync('./csr.pem', 'utf8'),
 	cert: fs.readFileSync('./server.crt', 'utf8')
 };
 
