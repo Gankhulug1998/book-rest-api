@@ -22,7 +22,7 @@ dotenv.config({
 });
 
 var options = {
-	key: fs.readFileSync('./csr.pem', 'utf8'),
+	key: fs.readFileSync('./key.pem', 'utf8'),
 	cert: fs.readFileSync('./server.crt', 'utf8')
 };
 
