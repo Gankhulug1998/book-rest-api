@@ -21,12 +21,10 @@ dotenv.config({
 	path: "./config/config.env"
 });
 
-// var options = {
-// 	key: fs.readFileSync('./key.pem', 'utf8'),
-// 	cert: fs.readFileSync('./server.crt', 'utf8')
-// };
-
-const certPath = '/etc/letsencrypt/live/christian-book-react.vercel.app';
+var options = {
+	key: fs.readFileSync('./key.pem', 'utf8'),
+	cert: fs.readFileSync('./server.crt', 'utf8')
+};
 
 const app = express();
 
@@ -81,10 +79,7 @@ app.use("/api/v1/books", booksRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use(errorHandler);
 
-var server = https.createServer({
-	key: fs.readFileSync(`${certPath}/privkey.pem`),
-	cert: fs.readFileSync(`${certPath}/fullchain.pem`)
-}, app).listen(process.env.PORT, function () {
+var server = https.createServer(options, app).listen(process.env.PORT, function () {
 	console.log("Express server listening on port " + process.env.PORT);
 });
 
